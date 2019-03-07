@@ -17,9 +17,9 @@ module.exports = async (self, app, metadata) => {
   //   await sleep(10000)
   // }
 
-  let continuar = await Pupt.$byText(page, 'continuar')
-  let retomar = await Pupt.$byText(page, 'retomar', 'a')
-  let comecar = await Pupt.$byText(page, 'começar')
+  let continuar = await Pupt.$byText(page, 'Continue')
+  let retomar = await Pupt.$byText(page, 'Resume', 'a')
+  let comecar = await Pupt.$byText(page, 'Start new questionnaire')
   if (continuar) {
     console.log(tag, 'Starting new classification (first one)')
     await continuar.click()
@@ -48,7 +48,7 @@ module.exports = async (self, app, metadata) => {
 
   // Find "Comunicação" button
   await sleep(2000)
-  let classification = 'utilitário, produtividade'
+  let classification = 'CONTENT AGGREGATORS, CONSUMER STORES'
   let category = await Pupt.$byText(page, classification, 'div[role="button"]')
   if (category) {
     await category.click()
@@ -62,7 +62,7 @@ module.exports = async (self, app, metadata) => {
   for (let el of nops) {
     let isMatch = await page.evaluate(el => {
       let isVisible = el.offsetWidth > 0 && el.offsetHeight > 0
-      let isNop = el.parentElement.textContent.toLowerCase().includes('não')
+      let isNop = el.parentElement.textContent.toLowerCase().includes('no')
       if (isVisible && isNop) {
         // console.log(el, el.id)
         // return el.id
@@ -97,7 +97,7 @@ module.exports = async (self, app, metadata) => {
   const $BTN_CALCULATE  = 'footer > div > div:nth-child(1) > button:nth-child(1):not([disabled])'
   const $BTN_APPLY      = 'footer > div > div:nth-child(2) > button:nth-child(1):not([disabled])'
 
-  // let save = await Pupt.$byText(page, 'salvar questionário')
+  // let save = await Pupt.$byText(page, 'Save questionnaire')
   let saved = false
   if (await Pupt.isVisible(page, $BTN_SAVE)) {
     console.log(tag, 'Saving')
@@ -127,14 +127,14 @@ module.exports = async (self, app, metadata) => {
 
   // console.log('text:', text)
 
-  // let el = await Pupt.$byText(page, 'Não', 'td > div > span.gwt-RadioButton')
+  // let el = await Pupt.$byText(page, 'No', 'td > div > span.gwt-RadioButton')
   // await (el.)
   // let text = await el.getProperty('innerText')
 
   // if (text == 'Não') {
   //   await 
   // }
-  // let el = await Pupt.$byText(page, 'não', 'span.gwt-RadioButton')
+  // let el = await Pupt.$byText(page, 'no', 'span.gwt-RadioButton')
   // if (!el) {
   //   console.error(tag, chalk.red('Could not find button #' + k))
   //   return 

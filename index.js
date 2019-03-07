@@ -316,7 +316,7 @@ module.exports = class PlayApi {
     // let notModified = await page.$eval($SAVE, btn => btn.disabled)
     // if (notModified) return;
     // console.log('saving..')
-    if (!await Pupt.click(page, await Pupt.$byText(page, 'salvar rascunho'))) {
+    if (!await Pupt.click(page, await Pupt.$byText(page, 'Save draft'))) {
       // console.log('didnt save')
       return
     }

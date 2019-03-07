@@ -18,7 +18,7 @@ module.exports = async (self, app, metadata) => {
   await sleep(2000)
 
   // Manage production lane
-  let manageVersion = await Pupt.$byText(page, 'gerenciar')
+  let manageVersion = await Pupt.$byText(page, 'Manage')
   if(manageVersion) {
     await manageVersion.click()
   } else {
@@ -26,22 +26,22 @@ module.exports = async (self, app, metadata) => {
   }
 
   // Finds one to edit
-  let editVersion = await Pupt.$byText(page, 'editar versão')
+  let editVersion = await Pupt.$byText(page, 'Edit release')
   if (editVersion) {
     await editVersion.click()
   } else {
     throw new Error('No version available for publishing')
   }
 
-  let revise = await Pupt.$waitByText(page, 'revisar')
+  let revise = await Pupt.$waitByText(page, 'Review')
 
   // Submit revision
-  revise = await Pupt.$byText(page, 'revisar')
+  revise = await Pupt.$byText(page, 'Review')
   console.log(tag, 'Publishing 1/3')
   await revise.click()
 
   console.log(tag, 'Publishing 2/3')
-  let launch = await Pupt.$waitByText(page, 'iniciar lançamento para')
+  let launch = await Pupt.$waitByText(page, 'Start rollout to production')
 
   // Check it's not disabled
   if (!await Pupt.click(page, launch)) {
@@ -50,7 +50,7 @@ module.exports = async (self, app, metadata) => {
 
   console.log(tag, 'Publishing 3/3')
   await sleep(2000)
-  let confirm = await Pupt.$waitByText(page, 'confirmar')
+  let confirm = await Pupt.$waitByText(page, 'Confirm')
 
   console.log(tag, chalk.green('!!!!!!!!!!!!!!!!!!!!!!!'))
   console.log(tag, chalk.green('!!!!!!!!!!!!!!!!!!!!!!!'))

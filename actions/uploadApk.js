@@ -42,7 +42,7 @@ module.exports = async (self, app, metadata) => {
   
   // Manage specified Lane
   console.log(tag, 'Opening Production lane')
-  let manageVersion = await Pupt.$byText(page, 'gerenciar')
+  let manageVersion = await Pupt.$byText(page, 'Manage')
   if(manageVersion) {
     await manageVersion.click()
   } else {
@@ -53,7 +53,7 @@ module.exports = async (self, app, metadata) => {
 
   // Try Editing old one, or create new version
   // const $EDIT_VERSION = 'section > div:nth-child(8) > div > button'
-  let editVersion = await Pupt.$byText(page, 'editar versão')
+  let editVersion = await Pupt.$byText(page, 'Edit release')
   // console.log(tag, 'editVersion', editVersion)
   if (editVersion) {
     await editVersion.click()
@@ -63,8 +63,10 @@ module.exports = async (self, app, metadata) => {
   }
 
   // Accept PlayApp Signing
-  const $CONTINUE_PLAY_APP_SIGN = 'section > div > div > div:nth-child(2) > div:nth-child(3) > form > div:nth-child(4) > div:nth-child(1) > div:nth-child(1) > button:nth-child(1)'
-  if (await Pupt.click(page, $CONTINUE_PLAY_APP_SIGN)) {
+  const $OPTOUT_APP_SIGN = 'section > div > div > div:nth-child(2) > div:nth-child(3) > form > div:nth-child(4) > div:nth-child(1) > div:nth-child(1) > button:nth-child(2)'
+  if (await Pupt.click(page, $OPTOUT_APP_SIGN)) {
+    const $SURE_OPTOUT__APP_SIGN = 'body > div.gwt-PopupPanel > div > div > div:nth-child(2) > footer > button:nth-child(1)';
+    await Pupt.click(page, $SURE_OPTOUT__APP_SIGN);
     console.log(tag, 'Adopting GooglePlay App Signing')
     const $COMPLETED_APP_SIGN = 'section > div:nth-child(4) > section > div > div > div'
     await Pupt.waitStyle(page, $COMPLETED_APP_SIGN, 'display', '')
@@ -85,15 +87,15 @@ module.exports = async (self, app, metadata) => {
       console.log(tag, 'found!', metadata.apk)
       await uploadButton.uploadFile(metadata.apk)
     }
-
+    
     // Wait upload to complete
     const $UPLOAD_BOX = 'section > div:nth-child(4) > div > div:nth-child(1) > div > div:nth-child(2)'
-    const $LOADING = $UPLOAD_BOX + ' > div:nth-child(3)'
-    const $FAILED  = $UPLOAD_BOX + ' > div:nth-child(4)'
+    const $LOADING = $UPLOAD_BOX + ' > div:nth-child(2)'
+    const $FAILED  = $UPLOAD_BOX + ' > div:nth-child(3)'
     // const $BOX_SUCCESS = $UPLOAD_BOX + ' > div:nth-child(3)'
 
     // Wait upload to complete
-    await Pupt.waitStyle(page, $LOADING, 'display', 'none', {timeout: 120000})
+    await Pupt.waitStyle(page, $LOADING, 'display', 'none', {timeout: 720000})
 
     // Check if failed box was shown (indicating an error occurred)
     if (await Pupt.isVisible(page, $FAILED)) {
@@ -106,7 +108,7 @@ module.exports = async (self, app, metadata) => {
 
   // Fill in release notes
   await sleep(5000)
-  const $RELEASE_NOTES = 'section > div:nth-child(4) > div > div:nth-child(5) > div textarea'
+  const $RELEASE_NOTES = 'section > div:nth-child(4) > div > div:nth-child(6) > div textarea'
   const NOTE = 'Initial version of ' + metadata.title
   await Pupt.fill(page, $RELEASE_NOTES, `<${metadata.language}>\r\n${NOTE}\r\n</${metadata.language}>`)
 
@@ -119,8 +121,8 @@ module.exports = async (self, app, metadata) => {
 
   // await sleep(1000)
   // await page.waitForSelector($UPLOAD_APK)
-  const save = await Pupt.$byText(page, 'salvar')
-  const saved = await Pupt.$byText(page, 'salvo')
+  const save = await Pupt.$byText(page, 'Save')
+  const saved = await Pupt.$byText(page, 'Saved')
   if (save){
     // Save
     console.log(tag, 'Not saved, saving...')
@@ -131,7 +133,7 @@ module.exports = async (self, app, metadata) => {
     }
   } 
 
-  let revise = await Pupt.$byText(page, 'revisar')
+  let revise = await Pupt.$byText(page, 'Review')
   if (revise) {
     // Wait save to finish
     // console.log(tag, 'Waiting to be saved...')
@@ -142,7 +144,7 @@ module.exports = async (self, app, metadata) => {
     await sleep(5000)
 
     // Submit revision
-    revise = await Pupt.$byText(page, 'revisar')
+    revise = await Pupt.$byText(page, 'Review')
     console.log(tag, 'Submiting revision...')
     await revise.click()
 
