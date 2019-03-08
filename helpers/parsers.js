@@ -39,8 +39,8 @@ exports.MetadataListingPayload = (app, metadata) => {
       '2': {
         '1': [ lang ],
         '2': {
-          // Type of application (Apps=0, Games=1) Subtype: Education=31
-          '1': 0, '2': 31
+          // Type of application (Apps=0, Games=1) Subtype: Shopping=14
+          '1': 0, '2': 14
         },
         '3': {
           '1': metadata.contactWebsite,

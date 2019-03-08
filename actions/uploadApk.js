@@ -17,7 +17,7 @@ module.exports = async (self, app, metadata) => {
 
   // Verify Lane
   const lane = metadata.lane || 'beta'
-  const LANES = ['beta'] // Only beta for now
+  const LANES = ['production', 'beta', 'alpha'] // Only beta for now
   if (!LANES.includes(lane)) {
     throw new Error(`Lane '${lane}' is not valid`);
   }
@@ -42,7 +42,7 @@ module.exports = async (self, app, metadata) => {
   
   // Manage specified Lane
   console.log(tag, 'Opening Production lane')
-  let manageVersion = await Pupt.$byText(page, 'Manage')
+  let manageVersion = await Pupt.$byText(page, 'Manage', `button[aria-label="Manage ${lane}"]`)
   if(manageVersion) {
     await manageVersion.click()
   } else {
@@ -95,7 +95,7 @@ module.exports = async (self, app, metadata) => {
     // const $BOX_SUCCESS = $UPLOAD_BOX + ' > div:nth-child(3)'
 
     // Wait upload to complete
-    await Pupt.waitStyle(page, $LOADING, 'display', 'none', {timeout: 720000})
+    await Pupt.waitStyle(page, $LOADING, 'display', 'none', {timeout: 120000})
 
     // Check if failed box was shown (indicating an error occurred)
     if (await Pupt.isVisible(page, $FAILED)) {

@@ -6,7 +6,7 @@ module.exports = async (self, app, metadata) => {
   if (!metadata) throw new Error('Metadata is required for this action');
 
   metadata = _.defaults(metadata, {
-    language: 'pt-BR',
+    language: 'en-US',
     title: '', //'NAME',
     fullDescription: '', //'DESCRIPTION',
     shortDescription: '', //'SHORT_DESCRIPTION',
