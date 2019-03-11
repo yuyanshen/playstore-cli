@@ -176,7 +176,7 @@ module.exports = class PlayApi {
     } else {
       let res = await this.axios.post('/apps/publish/androidapps', {
         method: 'create',
-        params: JSON.stringify({'1':{'2':{'1':[{'1':'pt-BR','2': title || package_name }]}}}),
+        params: JSON.stringify({'1':{'2':{'1':[{'1':'en-US','2': title || package_name }]}}}),
         xsrf: this.xsrf,
       })
 
