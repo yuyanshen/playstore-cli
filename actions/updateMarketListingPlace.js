@@ -28,9 +28,9 @@ module.exports = async (self, app, metadata) => {
   // Set the most important flags to override
   metadata.id = app.id
   // metadata.package_name = app.package_name
-
+  
   let payload = Parsers.MetadataListingPayload(app, metadata)
-
+  
   try {
     let res = await self.axios.post('/apps/publish/androidapps', {
       method: 'persist',
