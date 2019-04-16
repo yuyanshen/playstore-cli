@@ -15,7 +15,9 @@ module.exports = async (self, app, metadata) => {
   console.log(tag, 'Opening releases page')
   await sleep(2000)
   await page.goto(`${self.PlayURL}#ManageReleasesPlace:p=${app.package_name}&appid=${app.id}`)
-  await sleep(2000)
+  await sleep(4000)
+
+  const lane = metadata.lane || 'beta'
 
   // Manage production lane
   let manageVersion = await Pupt.$byText(page, 'Manage')
@@ -41,7 +43,7 @@ module.exports = async (self, app, metadata) => {
   await revise.click()
 
   console.log(tag, 'Publishing 2/3')
-  let launch = await Pupt.$waitByText(page, 'Start rollout to production')
+  let launch = await Pupt.$waitByText(page, `Start rollout to ${lane}`)
 
   // Check it's not disabled
   if (!await Pupt.click(page, launch)) {
