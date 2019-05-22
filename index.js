@@ -287,7 +287,7 @@ module.exports = class PlayApi {
       a && a.removeAttribute('data-notification-type')
     })
   }
-  async waitForNotification() {
+  async waitForNotification(type='') {
     const page = this.page
     const $NOTIFICATION = `div[data-notification-type]`
     const $NOTIFICATION_ERROR = `div[data-notification-type="ERROR"]`

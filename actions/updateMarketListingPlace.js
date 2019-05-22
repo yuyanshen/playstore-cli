@@ -38,7 +38,11 @@ module.exports = async (self, app, metadata) => {
       xsrf: self.xsrf,
     })
   } catch (e) {
-    console.error(e.response.data.error)
+    if (e && e.response && e.response.data && e.response.data.error) {
+	    console.error(e.response.data.error)
+    } else {
+	    console.error(e)
+    }
     throw new Error('Failed to save app information')
   }
 }

@@ -51,7 +51,7 @@ async function uploadMarketListingPlaceImage(self, type, files) {
     },
     featureGraphic: {
       sizes: [{width: 1024, height: 500}],
-      selector: `${BASE} > div:nth-of-type(4) > div:nth-child(2) input[type="file"]`
+      selector: `${BASE} > div:nth-of-type(4) > div:nth-child(1) input[type="file"]`
     },
     phoneScreenshots: {
       multiple: true,
@@ -84,6 +84,6 @@ async function uploadMarketListingPlaceImage(self, type, files) {
     await sleep(100)
 
     // Wait for notification on finish
-    await self.waitForNotification()
+    await self.waitForNotification(type)
   }
 }
