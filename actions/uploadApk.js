@@ -95,7 +95,8 @@ module.exports = async (self, app, metadata) => {
     // const $BOX_SUCCESS = $UPLOAD_BOX + ' > div:nth-child(3)'
 
     // Wait upload to complete
-    await Pupt.waitStyle(page, $LOADING, 'display', 'none', {timeout: 120000})
+    await page.waitForSelector('section > div:nth-child(4) > div > div:nth-child(1) > div > div > div > div > div > table > tbody:nth-child(3) > tr', {timeout: 120000})
+    // await Pupt.waitStyle(page, $LOADING, 'display', 'none', {timeout: 120000})
 
     // Check if failed box was shown (indicating an error occurred)
     if (await Pupt.isVisible(page, $FAILED)) {
