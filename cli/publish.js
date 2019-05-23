@@ -41,5 +41,10 @@ module.exports = async function (opts) {
 
   let app = await play.create(metadata)
 
-  await browser.close()
+  try {
+    console.log("waiting for browser close")
+    await browser.close()
+  } catch (ex) {
+    console.log(ex)
+  }
 }
