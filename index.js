@@ -37,6 +37,7 @@ module.exports = class PlayApi {
 
     this.browser = config.browser
     this.page = config.page || await this.browser.newPage()
+    this.page.setDefaultTimeout(120000)
 
     !this.config.silent && console.log(this.tag, 'Logging In with', chalk.green(this.config.email))
     await this.login({ email: this.config.email, password: this.config.password })
