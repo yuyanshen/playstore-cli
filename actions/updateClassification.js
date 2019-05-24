@@ -73,20 +73,20 @@ module.exports = async (self, app, metadata) => {
 
     if (isMatch) {
       // id = `#${id}`
-      await el._visibleCenter()
+      // await el._visibleCenter()
       // console.log(tag, 'choosing "Nop"')
-      // await el.click({delay: 30})
-      await page.evaluate((element) => {
-        var bounding = element.getBoundingClientRect();
-        var event = new MouseEvent('click', {
-            view: document.window,
-            bubbles: true,
-            cancelable: true,
-            clientX: bounding.left + bounding.width / 2,
-            clientY: bounding.top + bounding.height / 2
-        });
-        element.dispatchEvent(event);
-      }, el)
+      await el.click({delay: 30})
+      // await page.evaluate((element) => {
+      //   var bounding = element.getBoundingClientRect();
+      //   var event = new MouseEvent('click', {
+      //       view: document.window,
+      //       bubbles: true,
+      //       cancelable: true,
+      //       clientX: bounding.left + bounding.width / 2,
+      //       clientY: bounding.top + bounding.height / 2
+      //   });
+      //   element.dispatchEvent(event);
+      // }, el)
 
       await sleep(100)
     }
