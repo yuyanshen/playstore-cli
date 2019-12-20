@@ -227,7 +227,9 @@ module.exports = class PlayApi {
       // --------------------- ManageReleasesPlace
       console.log(tag, 'Updating app', chalk.green('Classification'))
       await require('./actions/updateClassification')(this, app, metadata)
-
+      // --------------------- ContentCenterPlace
+      console.log(tag, 'Updating app', chalk.green('Content'))
+      await require('./actions/updateContent')(this, app, metadata)
       // --------------------- PublishPlace
       console.log(tag, chalk.green('Publishing app'))
       await require('./actions/publish')(this, app, metadata)
