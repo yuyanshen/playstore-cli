@@ -19,7 +19,7 @@ module.exports = async (self, app, metadata) => {
   await page.waitForSelector('input[name="countryheader"]')
   await sleep(3000)
   // Set to all countries
-  console.log(tag, 'Filling form')
+  console.log(tag, 'Filling forms')
   try {
     await Pupt.checkRadio(page, 'input[name="countryheader"]', 1)
   } catch (e) {
