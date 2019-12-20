@@ -20,20 +20,33 @@ module.exports = async (self, app, metadata) => {
   await sleep(3000)
   // Set to all countries
   console.log(tag, 'Filling form')
-  await Pupt.checkRadio(page, 'input[name="countryheader"]', 1)
-  await sleep(3000)
-  // Set to NO on infant public
-  await Pupt.checkRadio(page, 'input[name="pcdRadioButton"]', 1)
-  await sleep(3000)
+  try {
+    await Pupt.checkRadio(page, 'input[name="countryheader"]', 1)
+  } catch (e) {
+    console.warn(e)
+  }
+
   // Set to NO for ads
-  await Pupt.checkRadio(page, 'input[name="ads_supported"]', 1)
-  await sleep(3000)
+  try {
+    await Pupt.checkRadio(page, 'input[name="ads_supported"]', 1)
+  } catch (e) {
+    console.warn(e)
+  }
+
   // Agree to terms (1)
-  Pupt.check(page, 'fieldset > label:nth-child(3) > div > div input[type="checkbox"]')
-  await sleep(3000)
+  try {
+    Pupt.check(page, 'fieldset > label:nth-child(3) > div > div input[type="checkbox"]')
+  } catch (e) {
+    console.warn(e)
+  }
+
   // Agree to terms (2)
-  Pupt.check(page, 'fieldset > label:nth-child(4) > div > div input[type="checkbox"]')
-  await sleep(3000)
+  try {
+    Pupt.check(page, 'fieldset > label:nth-child(4) > div > div input[type="checkbox"]')
+  } catch (e) {
+    console.warn(e)
+  }
+
   console.log(tag, 'Saving...')
   await self.saveForm()
 }
