@@ -15,8 +15,9 @@ module.exports = async (self, app, metadata) => {
   await page.goto(`${self.PlayURL}#PricingPlace:p=${app.package_name}`)
 
   console.log(tag, 'Waiting to load')
+  await sleep(2000)
   await page.waitForSelector('input[name="countryheader"]')
-  
+  await sleep(2000)
   // Set to all countries
   console.log(tag, 'Filling form')
   await Pupt.checkRadio(page, 'input[name="countryheader"]', 1)
