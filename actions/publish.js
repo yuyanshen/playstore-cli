@@ -41,10 +41,10 @@ module.exports = async (self, app, metadata) => {
   revise = await Pupt.$byText(page, 'Review')
   console.log(tag, 'Publishing 1/3')
   await revise.click()
-
+  await sleep(5000)
   console.log(tag, 'Publishing 2/3')
   let launch = await Pupt.$waitByText(page, `Start rollout to ${lane}`)
-
+  await sleep(5000)
   // Check it's not disabled
   if (!await Pupt.click(page, launch)) {
     throw new Error('Could not load Launch window. Launch button is disabled')
