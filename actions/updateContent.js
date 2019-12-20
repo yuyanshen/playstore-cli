@@ -9,7 +9,7 @@ module.exports = async (self, app, metadata) => {
 
   console.log(tag, 'Opening content center page')
   await sleep(1000)
-  await page.goto(`${self.PlayURL}#AppContentCenterPlace:p=${app.package_name}`)
+  await page.goto(`${self.PlayURL}#AppContentCenterPlace:p=${app.package_name}&appid=${app.id}`)
   await sleep(3000)
 
   let iniciar = await Pupt.$byText(page, 'Start')
