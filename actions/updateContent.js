@@ -14,7 +14,7 @@ module.exports = async (self, app, metadata) => {
 
   let iniciar = await Pupt.$byText(page, 'Start')
   await iniciar.click()
-  await sleep(2000)
+  await sleep(20000)
   Pupt.click(selector,'.GNVPVGB-Gi-e:nth-of-type(1) [type]')
   await sleep(2000)
   Pupt.click(selector,'.GNVPVGB-Gi-e:nth-of-type(2) [type]')
