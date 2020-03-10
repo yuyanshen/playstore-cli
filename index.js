@@ -48,8 +48,8 @@ module.exports = class PlayApi {
       timeout: 10000,
       headers: {
         'content-type': 'application/javascript; charset=UTF-8',
-        'x-gwt-module-base': 'https://ssl.gstatic.com/play-apps-publisher-rapid/fox/074adb9a16dafb48275500223c3f0df1/fox/gwt/',
-        'x-gwt-permutation': '46943F73EC56AB6C8219700574F79376',
+        'x-gwt-module-base': 'https://ssl.gstatic.com/play-apps-publisher-rapid/fox/8228ef790578cea11de2812d913619c0/fox/gwt/',
+        'x-gwt-permutation': '469D2AE52C43902891D2A5C8EF4A3FFD',
         'cookie': this.cookies,
       },
     });
