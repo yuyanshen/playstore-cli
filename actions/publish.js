@@ -61,10 +61,5 @@ module.exports = async (self, app, metadata) => {
   console.log(tag, chalk.green('!!!!!!!!!!!!!!!!!!!!!!!'))
   console.log(tag, chalk.green('!!!!!!!!!!!!!!!!!!!!!!!'))
   console.log(tag, chalk.green('!!!!!!!!!!!!!!!!!!!!!!!'))
-  
-  if (!await Pupt.click(page, confirm)) {
-    throw new Error('App could not be published because confirmation didnt succeeded')
-  }
-
   console.log(tag, 'Done ')
 }
