@@ -45,11 +45,11 @@ module.exports = class PlayApi {
     // Create axios instance
     this.axios = axios.create({
       baseURL: 'https://play.google.com/',
-      timeout: 10000,
+      timeout: 12000,
       headers: {
         'content-type': 'application/javascript; charset=UTF-8',
-        'x-gwt-module-base': 'https://ssl.gstatic.com/play-apps-publisher-rapid/fox/8228ef790578cea11de2812d913619c0/fox/gwt/',
-        'x-gwt-permutation': '469D2AE52C43902891D2A5C8EF4A3FFD',
+        'x-gwt-module-base': 'https://ssl.gstatic.com/play-apps-publisher-rapid/fox/420c92cb8613266b99249dea928bc08d/fox/gwt/',
+        'x-gwt-permutation': '66FC39F8AD255089937E4B76315D9658',
         'cookie': this.cookies,
       },
     });
@@ -67,6 +67,7 @@ module.exports = class PlayApi {
     }, [
       'load-cookies {{{cookiePath}}}',
       'goto https://play.google.com/apps/publish/',
+      'wait 5s',
       'finish-if-url startsWith https://play.google.com/apps/publish/',
       'fill input[name="identifier"] {{email}}',
       'enter',
@@ -86,7 +87,7 @@ module.exports = class PlayApi {
     !this.config.silent && console.log(this.tag, 'Confirming Login (xsrf token)')
     this.xsrf = await GetXsrf(this.cookies)
   }
-
+  await sleep(4000)
   /*
    * Load All apps from the store
    */
