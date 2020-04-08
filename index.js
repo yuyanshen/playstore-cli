@@ -87,7 +87,7 @@ module.exports = class PlayApi {
     !this.config.silent && console.log(this.tag, 'Confirming Login (xsrf token)')
     this.xsrf = await GetXsrf(this.cookies)
   }
-  await sleep(4000)
+  
   /*
    * Load All apps from the store
    */
