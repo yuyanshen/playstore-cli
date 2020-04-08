@@ -22,7 +22,6 @@ module.exports = async (self, app, metadata) => {
   // Manage production lane
   let manageVersion = await Pupt.$byText(page, 'Manage')
   if(manageVersion) {
-    await sleep(2000)
     await manageVersion.click()
   } else {
     throw new Error('Could not open Production lane')
