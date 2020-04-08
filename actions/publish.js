@@ -15,13 +15,14 @@ module.exports = async (self, app, metadata) => {
   console.log(tag, 'Opening releases page')
   await sleep(2000)
   await page.goto(`${self.PlayURL}#ManageReleasesPlace:p=${app.package_name}&appid=${app.id}`)
-  await sleep(4000)
+  await sleep(8000)
 
   const lane = metadata.lane || 'beta'
 
   // Manage production lane
   let manageVersion = await Pupt.$byText(page, 'Manage')
   if(manageVersion) {
+    await sleep(2000)
     await manageVersion.click()
   } else {
     throw new Error('Could not open Production lane')
