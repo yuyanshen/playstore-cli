@@ -13,7 +13,7 @@
     "lodash": "^4.17.4",
     "minimist": "^1.2.0",
     "mustache": "^2.3.0",
-    "puppeteer": "^0.12.0"
+    "puppeteer": "^2.1.1"
   },
   "bin": {
     "playstore": "./cli/index.js"
