@@ -27,11 +27,11 @@ module.exports = async (self, app, metadata) => {
   }
 
   // Set to NO for ads
-  try {
+/*   try {
     await Pupt.checkRadio(page, 'input[name="ads_supported"]', 1)
   } catch (e) {
     console.warn(e)
-  }
+  } */
 
   // Agree to terms (1)
   try {
