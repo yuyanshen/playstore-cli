@@ -26,7 +26,7 @@ module.exports = async (self, app, metadata) => {
   console.log(tag, 'Opening releases page')
   await sleep(2000)
   await page.goto(`${self.PlayURL}#ManageReleasesPlace:p=${app.package_name}&appid=${app.id}`)
-  await sleep(4000)
+  await sleep(8000)
 
   // let laneSelector = 'section > div > div > div > div > button'
   // let laneSelectorIndex = LANES.indexOf(lane)
