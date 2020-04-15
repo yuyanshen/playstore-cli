@@ -11,6 +11,16 @@ module.exports = async (self, app, metadata) => {
   await sleep(1000)
   await page.goto(`${self.PlayURL}#AppContentCenterPlace:p=${app.package_name}&appid=${app.id}`)
   await sleep(8000)
+  //Start instructions for app access
+  await Pupt.click(page,"material-button[aria-label='Start instructions for app access']")
+  await sleep(3000)
+  await Pupt.click(page,"console-form-expandable-section:nth-of-type(1) >div>div>material-radio>div>input")
+  await sleep(3000)
+  let baocun = await Pupt.$byText(page, 'Save')
+  await baocun.click()
+  await sleep(2000)
+  //Go back to App content
+  await Pupt.click(page,"material-button:nth-child(1)>button[aria-label='Go back to App content']")
   //Start ads declaration
   await Pupt.click(page,"material-button[aria-label='Start ads declaration']")
   await sleep(3000)
